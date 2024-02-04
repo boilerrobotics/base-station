@@ -19,14 +19,14 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='tbureete',
+    maintainer='Tam Bureetes',
     maintainer_email='tbureete@purdue.edu',
     description='TODO: Package description',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'tank_drive_publisher = joystick.tank_drive_publisher:main',
+            'tank_drive = joystick.tank_drive:main',
         ],
     },
 )

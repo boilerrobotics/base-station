@@ -3,5 +3,4 @@ log/
 build/
 *.pyc
 .venv/
-.vscode/
 .idea
