@@ -9,17 +9,12 @@ from brc_msgs.msg import DriveCmd
 class TankDrivePublisherNode(Node):
 
     def __init__(self):
-        super().__init__('tank_drive_publisher')
+        super().__init__("tank_drive_publisher")
         self.subscription = self.create_subscription(
-            Joy,
-            'joy',
-            self.controller_callback,
-            qos_profile_sensor_data
+            Joy, "joy", self.controller_callback, qos_profile_sensor_data
         )
         self.publisher_ = self.create_publisher(
-            DriveCmd,
-            'drive_powers',
-            qos_profile_sensor_data
+            DriveCmd, "drive_powers", qos_profile_sensor_data
         )
 
     def controller_callback(self, message: Joy):
@@ -31,7 +26,7 @@ class TankDrivePublisherNode(Node):
         msg.right = right_pow
 
         self.publisher_.publish(msg)
-        self.get_logger().info(f'Published l: {left_pow}, r: {right_pow}')
+        self.get_logger().info(f"Published l: {left_pow}, r: {right_pow}")
 
 
 def tank_drive(translational: float, angular: float) -> tuple[float, float]:
@@ -46,10 +41,11 @@ def tank_drive(translational: float, angular: float) -> tuple[float, float]:
     :param angular: The left / right power, in [-1.0, 1.0].
     :return: The parsed left and right wheel speeds, in [-1.0, 1.0].
     """
-    scale = max(1.0, abs(translational) + abs(angular))  # Scale net inputs > 1.0 down to 1.0
+    scale = max(
+        1.0, abs(translational) + abs(angular)
+    )  # Scale net inputs > 1.0 down to 1.0
 
-    return (translational - angular) / scale, \
-           (translational + angular) / scale
+    return ((translational - angular) / scale, (translational + angular) / scale)
 
 
 def main(args=None):
@@ -62,5 +58,5 @@ def main(args=None):
     rclpy.shutdown()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
