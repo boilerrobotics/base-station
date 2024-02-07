@@ -1,11 +1,12 @@
 # Base Station repo
 
-This repo contains the code that will be running at the base station. 
-This repo is a ROS2 workspace that depends on interfaces from [brc_msgs](https://github.com/boilerrobotics/brc_msgs). 
-Clone or download [brc_msgs](https://github.com/boilerrobotics/brc_msgs) into the same location as this repo is required. 
+This repo contains the code that will be running at the base station.
+This repo is a ROS2 workspace that depends on interfaces from [brc_msgs](https://github.com/boilerrobotics/brc_msgs).
+Clone or download [brc_msgs](https://github.com/boilerrobotics/brc_msgs) into the same location as this repo is required.
 
 ## Setup
-First update package dependencies by running following command 
+
+First update package dependencies by running following command
 
 ```bash
 rosdep install --from-paths src --ignore-src
@@ -17,5 +18,5 @@ Since this repo depends on [brc_msgs](https://github.com/boilerrobotics/brc_msgs
 
 ### Automated Setup
 
-Run `source setup.bash` for automatic setup. 
-Then you can run node or launch files. 
+Run `source setup.bash` for automatic setup.
+Then you can run node or launch files.
