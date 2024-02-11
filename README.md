@@ -6,6 +6,9 @@ Clone or download [brc_msgs](https://github.com/boilerrobotics/brc_msgs) into th
 
 ## Setup
 
+This ROS2 workspace is written for Ubuntu 22.04 (Python 3.10) and ROS Iron.
+Using older version of Ubuntu or ROS may cause issues. 
+
 First update package dependencies by running following command
 
 ```bash
