@@ -3,7 +3,7 @@ from rclpy.node import Node
 from rclpy.qos import qos_profile_sensor_data
 
 from sensor_msgs.msg import Joy
-from brc_msgs.msg import DriveCmd
+from geometry_msgs.msg import Twist
 
 
 class TankDrivePublisherNode(Node):
@@ -14,38 +14,22 @@ class TankDrivePublisherNode(Node):
             Joy, "joy", self.controller_callback, qos_profile_sensor_data
         )
         self.publisher_ = self.create_publisher(
-            DriveCmd, "drive_powers", qos_profile_sensor_data
+            Twist, "cmd_vel", qos_profile_sensor_data
         )
 
-    def controller_callback(self, message: Joy):
-        # Read controller data, republishing it as drive powers using a simple tank drive control scheme.
-        left_pow, right_pow = tank_drive(message.axes[1], message.axes[3])
+    def controller_callback(self, controller: Joy):
+        """
+        Map controller input to Twist message.
+        Left analog (axis 1) control speed -> twist.linear.x
+        Right analog (axis 3) control steering -> twist.angular.z
+        """
 
-        msg = DriveCmd()
-        msg.left = left_pow
-        msg.right = right_pow
+        msg = Twist()
+        msg.linear.x = controller.axes[1]
+        msg.angular.z = controller.axes[3]
 
         self.publisher_.publish(msg)
-        self.get_logger().info(f"Published l: {left_pow}, r: {right_pow}")
-
-
-def tank_drive(translational: float, angular: float) -> tuple[float, float]:
-    """
-    Convert translational and angular input to left and right wheel powers.
-
-    In a simple tank drive control scheme, the joystick 1 y-axis controls the forward/backward
-    translation and the joystick 2 x-axis controls the left/right rotation. Speeds are returned as
-    a tuple of [left, right] wheel velocities.
-
-    :param translational: The forward / back power, in [-1.0, 1.0].
-    :param angular: The left / right power, in [-1.0, 1.0].
-    :return: The parsed left and right wheel speeds, in [-1.0, 1.0].
-    """
-    scale = max(
-        1.0, abs(translational) + abs(angular)
-    )  # Scale net inputs > 1.0 down to 1.0
-
-    return ((translational - angular) / scale, (translational + angular) / scale)
+        self.get_logger().debug(f"speed: {msg.linear.x}, steering: {msg.angular.z}")
 
 
 def main(args=None):

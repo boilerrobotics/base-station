@@ -1,11 +1,12 @@
 {
-    "ros.distro": "iron",
-    "python.autoComplete.extraPaths": [
-        "/opt/ros/iron/lib/python3.10/site-packages",
-        "../brc_msgs/install/brc_msgs/lib/python3.10/site-packages"
-    ],
-    "python.analysis.extraPaths": [
-        "/opt/ros/iron/lib/python3.10/site-packages",
-        "../brc_msgs/install/brc_msgs/lib/python3.10/site-packages"
-    ]
+  "ros.distro": "humble",
+  "python.autoComplete.extraPaths": [
+    "/opt/ros/humble/lib/python3.10/site-packages",
+    "/opt/ros/humble/local/lib/python3.10/dist-packages"
+  ],
+  "python.analysis.extraPaths": [
+    "/opt/ros/humble/lib/python3.10/site-packages",
+    "/opt/ros/humble/local/lib/python3.10/dist-packages"
+  ],
+  "cSpell.words": ["rclpy"]
 }
