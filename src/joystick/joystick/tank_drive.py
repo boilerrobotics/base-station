@@ -1,6 +1,6 @@
 import rclpy
 from rclpy.node import Node
-from rclpy.qos import qos_profile_sensor_data
+from rclpy.qos import qos_profile_sensor_data, qos_profile_system_default
 
 from sensor_msgs.msg import Joy
 from geometry_msgs.msg import Twist
@@ -14,7 +14,12 @@ class TankDrivePublisherNode(Node):
             Joy, "joy", self.controller_callback, qos_profile_sensor_data
         )
         self.publisher_ = self.create_publisher(
-            Twist, "cmd_vel", qos_profile_sensor_data
+            Twist,
+            "cmd_vel",
+            qos_profile_system_default,
+            # Might need to modify QOS policy.
+            # Better to use sensor data but it is not compatible with Gazebo policy
+            # It could be fixed by changing gazebo policy
         )
 
     def controller_callback(self, controller: Joy):
