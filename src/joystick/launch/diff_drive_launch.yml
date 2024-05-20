@@ -5,4 +5,4 @@ launch:
 
   - node:
       pkg: "joystick"
-      exec: "tank_drive"
+      exec: "diff_drive"

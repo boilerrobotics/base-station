@@ -27,5 +27,5 @@ Noted: you might need to install `sudo apt install jstest-gtk` before running `j
 ## Running
 
 ```bash
-ros2 launch joystick tank_drive_launch.yml
+ros2 launch joystick diff_drive_launch.yml
 ```
