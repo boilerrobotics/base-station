@@ -6,7 +6,7 @@ from sensor_msgs.msg import Joy
 from geometry_msgs.msg import Twist
 
 
-class TankDrivePublisherNode(Node):
+class DiffDrivePublisherNode(Node):
 
     def __init__(self):
         super().__init__("tank_drive_publisher")
@@ -40,10 +40,10 @@ class TankDrivePublisherNode(Node):
 def main(args=None):
     rclpy.init(args=args)
 
-    tank_publisher = TankDrivePublisherNode()
-    rclpy.spin(tank_publisher)
+    publisher = DiffDrivePublisherNode()
+    rclpy.spin(publisher)
 
-    tank_publisher.destroy_node()
+    publisher.destroy_node()
     rclpy.shutdown()
 
 
