@@ -27,7 +27,7 @@ setup(
     tests_require=["pytest"],
     entry_points={
         "console_scripts": [
-            "diff_drive = joystick.diff_drive:main",
+            "control_rover = joystick.control_rover:main",
         ],
     },
 )

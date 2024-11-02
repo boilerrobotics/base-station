@@ -25,13 +25,13 @@ class RoverControlPublisherNode(Node):
     def controller_callback(self, controller: Joy):
         """
         Map controller input to Twist message.
-        Left analog (axis 1) control speed -> twist.linear.x
-        Right analog (axis 3) control steering -> twist.angular.z
+        Right analog (axis 1) control speed -> twist.linear.x
+        Left analog (axis 3) control steering -> twist.angular.z
         """
 
         msg = Twist()
-        msg.linear.x = controller.axes[1]
-        msg.angular.z = controller.axes[3]
+        msg.linear.x = controller.axes[3]
+        msg.angular.z = controller.axes[1]
 
         self.publisher_.publish(msg)
         self.get_logger().debug(f"speed: {msg.linear.x}, steering: {msg.angular.z}")
