@@ -3,7 +3,7 @@
 We use [Joy](http://wiki.ros.org/joy) package to read the joystick input.
 The node `ros2 run joy joy_node` will return an output in `/joy` node with [sensor_msgs/msg/Joy](https://docs.ros2.org/foxy/api/sensor_msgs/msg/Joy.html) message.
 
-`diff_drive.py` consumes raw outputs from `joy_node`.
+`control_rover.py` consumes raw outputs from `joy_node`.
 Then it processes raw outputs into [Twist](https://docs.ros2.org/galactic/api/geometry_msgs/msg/Twist.html) message.
 
 ## Testing joystick
@@ -27,5 +27,5 @@ Noted: you might need to install `sudo apt install jstest-gtk` before running `j
 ## Running
 
 ```bash
-ros2 launch joystick diff_drive_launch.yml
+ros2 launch joystick control_rover_launch.yml
 ```

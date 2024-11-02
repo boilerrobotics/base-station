@@ -6,10 +6,10 @@ from sensor_msgs.msg import Joy
 from geometry_msgs.msg import Twist
 
 
-class DiffDrivePublisherNode(Node):
+class RoverControlPublisherNode(Node):
 
     def __init__(self):
-        super().__init__("tank_drive_publisher")
+        super().__init__("rover_manual_control_publisher")
         self.subscription = self.create_subscription(
             Joy, "joy", self.controller_callback, qos_profile_sensor_data
         )
@@ -40,7 +40,7 @@ class DiffDrivePublisherNode(Node):
 def main(args=None):
     rclpy.init(args=args)
 
-    publisher = DiffDrivePublisherNode()
+    publisher = RoverControlPublisherNode()
     rclpy.spin(publisher)
 
     publisher.destroy_node()
