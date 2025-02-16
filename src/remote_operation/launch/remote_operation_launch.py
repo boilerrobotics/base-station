@@ -13,5 +13,17 @@ def generate_launch_description():
                 package="joystick",
                 executable="control_rover",
             ),
+            Node(
+                package="image_view",
+                executable="image_view",
+                remappings=[
+                    ("image/compressed", "/zed/zed_node/rgb/image_rect_color/compressed")
+                ],
+                parameters=[
+                    {"image_transport": "compressed"}
+                ]
+            )
         ]
     )
+
+
