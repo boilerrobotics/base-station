@@ -31,7 +31,7 @@ class RoverControlPublisherNode(Node):
 
         msg = Twist()
         msg.linear.x = controller.axes[1]
-        msg.angular.z = controller.axes[3]
+        msg.angular.z = controller.axes[1]
 
         self.publisher_.publish(msg)
         self.get_logger().debug(f"speed: {msg.linear.x}, steering: {msg.angular.z}")
